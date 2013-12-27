@@ -1,0 +1,13 @@
+Options +FollowSymLinks +Indexes
+
+RewriteEngine On
+
+RewriteCond %{THE_REQUEST} \ /(.+/)?index\.(html?|php)(\?.*)?\  [NC]
+RewriteRule ^((.+)/)?index\.(html?|php)$ /$2 [R=301,L]
+
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteCond %{DOCUMENT_ROOT}/$1.php -f
+RewriteRule ^(.+)(\.php|/)$ /$1 [R=301,L]
+
+RewriteCond %{DOCUMENT_ROOT}/$1.php -f
+RewriteRule ^(.*[^/])$ /$1.php [QSA,L]

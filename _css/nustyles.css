@@ -1,0 +1,336 @@
+body {
+	background:#FFFFFF;
+	font-family:Raleway,Futura,'Josefin Sans',verdana,sans-serif;
+	font-weight:500;
+}
+a {
+	text-decoration:none
+}
+h1, h2, h3, h4, h5 {
+	font-family:'Shadows Into Light', sans-serif;
+}
+h1 {
+	padding-top:12px;
+}
+h5 {
+}
+hr {
+	/*	padding-bottom: 28px;
+	 /*	background: transparent url(/_img/arrow-down.png) no-repeat center bottom;
+	 cursor: pointer;
+	 */
+}
+.horiz-nav {
+	width:100%;
+	overflow:auto;
+	text-align:center;
+}
+.horiz-nav> div {
+	width:50%;
+	margin:-1px auto;
+	background:#EEEEEE;
+	height:23px;
+	position:relative;
+	bottom:0px;
+	padding:11px 0;
+	border-radius:9px;
+}
+.horiz-nav ul {
+	color:#000000;
+	opacity:.85;
+	margin:0 auto -1px;
+	height:20px;
+	display:inline-block;
+	vertical-align:text-bottom;
+}
+.horiz-nav ul li {
+	float:left;
+	border:1px solid #FFFFFF;
+	border-radius:4px;
+	margin:0 2px;
+	background:#FFFFFF;
+}
+.horiz-nav ul li a {
+	float:left;
+	width:20px;
+	height:20px;
+	text-align:center;
+	font-weight:bold;
+	cursor: pointer;
+}
+.horiz-nav ul li.active a {
+	background:#000000;
+	color:#FFFFFF;
+	border-radius:4px;
+}
+.horiz-nav ul li a:hover {
+	background:#006600;
+	border-radius:4px;
+	color:#FFFFFF;
+}
+.horiz-nav span.nav-label {
+	background:#000000;
+	border-radius:4px;
+	color:#FFFFFF;
+	margin:0;
+	padding:0 10px;
+	font-weight:bold;
+	display:inline-block;
+	border:1px solid #FFFFFF;
+	height:20px;
+}
+.horiz-nav span.hov-nav-label {
+	background:#006600;
+}
+.nav-left {
+	width:200px;
+	height:33px;
+	float:left;
+	background:transparent url(/_img/arrow-left.png) no-repeat left center;
+	cursor:pointer;
+	padding:11px 0px 0px 27px;
+	text-align:left;
+	border-radius:9px;
+}
+.nav-right {
+	width:200px;
+	height:33px;
+	float:right;
+	background:transparent url(/_img/arrow-right.png) no-repeat right center;
+	cursor:pointer;
+	padding:11px 27px 0px 0px;
+	text-align:right;
+	border-radius:9px;
+}
+.nav-left:hover, .nav-right:hover {
+	background-color:#EEEEEE;
+}
+.nav-curr {
+	width:auto;
+	height:25px;
+	padding:2px 0px 10px;
+	text-align:center;
+	display:block;
+	margin:3px auto;
+	background:transparent url(/_img/arrow-down.png) no-repeat center bottom;
+	cursor:pointer;
+	clear:both;
+	border-top:2px solid #DDDDDD;
+}
+.nav-curr-hide {
+	opacity:0;
+	cursor:auto;
+}
+.nav-next {
+	width:auto;
+	height:25px;
+	padding:2px 0px 10px;
+	text-align:center;
+	display:block;
+	margin:3px auto;
+	background:transparent url(/_img/arrow-down.png) no-repeat center bottom;
+	cursor:pointer;
+	clear:both;
+	border-top:2px solid #DDDDDD;
+}
+.nav-prev {
+	width:auto;
+	height:25px;
+	padding:10px 0px 2px;
+	text-align:center;
+	display:block;
+	margin:3px auto;
+	background:transparent url(/_img/arrow-up.png) no-repeat center top;
+	cursor:pointer;
+	clear:both;
+	border-bottom:2px solid #DDDDDD;
+}
+.nav-curr:hover, .nav-prev:hover, .nav-next:hover {
+	background-color:#EEEEEE;
+}
+nav {
+	position:fixed;
+	top:0px;
+	height:20px;
+	background:#FFFFFF;
+	color:#000000;
+	z-index:10;
+	border-radius:4px;
+	opacity:.85;
+	border:1px solid #FFFFFF;
+	width:auto;
+	display:inline;
+}
+nav ul {
+	float:right;
+	margin:0 -28px 0 0px;
+	background:#FFFFFF;
+	border-radius:4px;
+	width:20px;
+	border:1px solid #FFFFFF;
+}
+nav ul li a {
+	float:left;
+	width:20px;
+	height:20px;
+	text-align:center;
+	margin:0;
+	font-weight:bold;
+}
+nav ul li.active a {
+	background:#000000;
+	color:#FFFFFF;
+	border-radius:4px;
+}
+nav ul li a:hover {
+	background:#006600;
+	border-radius:4px;
+	color:#FFFFFF;
+}
+nav span.nav-label {
+	height:20px;
+	float:right;
+	background:#000000;
+	border-radius:4px;
+	color:#FFFFFF;
+	margin:0;
+	padding:0 10px;
+	font-weight:bold;
+	display:block;
+}
+nav span.hov-nav-label {
+	background:#006600;
+}
+.background {
+	width:100%;
+	height:100%;
+	position:fixed;
+	top:0px;
+	left:0px;
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.background .transition {
+	width:100%;
+	height:100%;
+	position:static;
+	background-size:cover;
+	/* opacity: 0; */
+}
+.bg-inview {
+	/*	position: fixed; */
+}
+a.dirText, a.dirText.visited {
+	color:#fff;
+}
+.container {
+	background:transparent;
+}
+section {
+	/* opacity:.95;
+	 background:#FFF; */
+	background-color:rgba(255,255,255,0.95);
+	position:absolute;
+	width:100%;
+	overflow:hidden;
+	border-radius:8px;
+	z-index:1;
+}
+section.x-scroll {
+	overflow:scroll;
+	position:static;
+	background:transparent;
+}
+section.x-scroll h5 {
+	text-align:left;
+	overflow-x:scroll;
+}
+section.x-scroll div.scroll> div {
+	margin-bottom:20px;
+}
+/*
+ .arrow {
+ opacity: 0.5;
+ }
+ .dirText {
+ color: white;
+ font-size: 20px;
+ margin-top: 60px;
+ opacity: 1;
+ }
+ .control {
+ position: absolute;
+ width: 140px;
+ cursor: pointer;
+ }
+ #rightText {
+ height: 40px;
+ background: transparent url('/_img/nav_sprites.png') 0px -195px no-repeat;
+ padding-top: 40px;
+ width: 275px;
+ text-indent: 25px;
+ position: absolute;
+ left: 657px;
+ top: 10px;
+ display: block;
+ text-align: right;
+ }
+ #rightText:hover {
+ background-position: 0px -295px;
+ }
+ #leftText {
+ height: 40px;
+ background: transparent url('/_img/nav_sprites.png') -160px 5px no-repeat;
+ padding-top: 40px;
+ width: 33%;
+ text-indent: 25px;
+ position: absolute;
+ left: 25px;
+ top: 10px;
+ display: block;
+ }
+ #leftText:hover {
+ background-position: -160px -95px;
+ }
+ #topText {
+ height: 0px;
+ background: transparent url('/_img/nav_sprites.png') -740px -770px no-repeat;
+ padding-bottom: 71px;
+ width: 80px;
+ text-indent: 0px;
+ position: absolute;
+ left: 657px;
+ top: -59px;
+ display: block;
+ }
+ #topText:hover {
+ background-position: -740px -870px;
+ }
+ #centerText {
+ height: 40px;
+ background: transparent url('/_img/nav_sprites.png') -75px -1195px no-repeat;
+ padding-top: 40px;
+ width: 316px;
+ text-indent: 133px;
+ position: absolute;
+ left: 341px;
+ top: 10px;
+ display: block;
+ }
+ #centerText:hover {
+ background-position: -75px -1295px;
+ }
+ .center {
+ margin-left: auto;
+ margin-right: auto;
+ }
+ .right {
+ float: right;
+ }
+ .left {
+ float: left;
+ }
+ .clear {
+ clear: both;
+ }
+ */
