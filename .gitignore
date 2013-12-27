@@ -4,9 +4,10 @@
 
 # Environment #
 ###################
+.gitignore
 .htaccess
 .DS_Store
-/_img/_source
+/_img/_source*
 
 
 # Compiled source #
