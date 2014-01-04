@@ -4,183 +4,285 @@
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html lang="en">
-	<!--<![endif]-->
-	<head>
+    <!--<![endif]-->
+    <head>
 
-		<!-- Basic Page Needs
-		================================================== -->
-		<meta charset="utf-8">
-		<title>nustori</title>
-		<meta name="description" content="" />
-		<meta name="author" content="" />
+        <!-- Basic Page Needs
+        ================================================== -->
+        <meta charset="utf-8">
+        <title>nustori</title>
+        <meta name="description" content="" />
+        <meta name="author" content="" />
 
-		<!-- Mobile Specific Metas
-		================================================== -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <!-- Mobile Specific Metas
+        ================================================== -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-		<!-- CSS
-		================================================== -->
+        <!-- CSS
+        ================================================== -->
 
-		<link href='//fonts.googleapis.com/css?family=Shadows+Into+Light:400|Raleway:500,700' rel='stylesheet' type='text/css'>
-		
-		<link rel="stylesheet" href="/_css/skeleton/base.css" />
-		<link rel="stylesheet" href="/_css/skeleton/skeleton.css" />
-		<link rel="stylesheet" href="/_css/skeleton/layout.css" />
-		<link rel="stylesheet" href="/_css/nustyles.css" />
+        <link href='//fonts.googleapis.com/css?family=Open+Sanst:400|Raleway:500,700' rel='stylesheet' type='text/css'>
 
-		<!-- JS
-		================================================== -->
-		<!--[if lt IE 9]>
-		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-		<!--
-		<script>
-		$(function() {
-		$.getScript('/_js/load.js');
-		});
-		</script>
-		-->
+        <link rel="stylesheet" href="/_css/skeleton/base.css" />
+        <link rel="stylesheet" href="/_css/skeleton/skeleton.css" />
+        <link rel="stylesheet" href="/_css/skeleton/layout.css" />
+        <!-- <link rel="stylesheet" href="/_css/nustyles.css" /> -->
+        <link rel="stylesheet/less" href="/_css/nustyles.less" />
+        <script src="/_js/less-1.5.0.min.js" type="text/javascript"></script>
+        <!--[if gte IE 9]>
+        <style type="text/css">
+        body> header {
+        filter: none;
+        }
+        </style>
+        <![endif]-->
+        <!-- JS
+        ================================================== -->
+        <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <!--
+        <script>
+        $(function() {
+        $.getScript('/_js/load.js');
+        });
+        </script>
+        -->
 
-		<!--
-		<script src="/_js/parallax.js"></script>
-		<script src="/_js/index.js"></script>
-		-->
-		<script src="/_js/nustori.js"></script>
+        <!--
+        <script src="/_js/parallax.js"></script>
+        <script src="/_js/index.js"></script>
+        -->
+        <script src="/_js/nustori.js"></script>
 
-		<!-- Favicons
-		================================================== -->
-		<link rel="shortcut icon" href="/_img/favicon.ico">
-		<link rel="apple-touch-icon" href="/_img/apple-touch-icon.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="/_img/apple-touch-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="/_img/apple-touch-icon-114x114.png">
+        <!-- Favicons
+        ================================================== -->
+        <link rel="shortcut icon" href="/_img/favicon.ico">
+        <link rel="apple-touch-icon" href="/_img/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/_img/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/_img/apple-touch-icon-114x114.png">
 
-	</head>
-	<body>
+    </head>
+    <body>
 
-		<!-- Primary Page Layout
-		================================================== -->
+        <!-- Primary Page Layout
+        ================================================== -->
 
-		<!-- Delete everything in this .container and get started on your own site! -->
-		<div class="container">
-			<section class="row0 col0" data-bg-img="/_img/plastic-mountains-16_9-crop_fx.jpg" data-bgt-img="/_img/plastic-mountains-16_9-crop_blur.jpg" data-bg-color="#FFFFFF">
-				<div class="sixteen columns">
-					<h1 class="remove-bottom">nustori</h1>
-					<strong>we're learning a new language. let's use it to tell a nustori.</strong>
+        <!-- Delete everything in this .container and get started on your own site! -->
+        <header>
+            <h1>nustori</h1>
+            <nav>
+                <ul></ul>
+            </nav><span class="nav-label"></span>
+        </header>
+        <div class="container">
+            <section  data-bg-img="/_img/wood.jpg" data-bgt-img="/_img/wood-strokes.jpg" data-bg-color="#FFFFFF">
+                <header>
+                    <h1>Nustori</h1>
+                    <p>
+                        we have a new language. let's use it to tell a new story.
+                    </p>
+                    <p>
+                        version 0.1 | proof of concept release
+                    </p>
+                </header>
+                <div class="sixteen columns">
+                    <h1 class="remove-bottom">let's build</h1>
+                    <strong>we have the resources</strong>
 
-				</div>
-				<div class="two-thirds column">
-					<h3>a platform for stories</h3>
-					<p>
-						Traditional content management systems are better at managment than content.
-					</p>
-				</div>
-				<div class="one-third column">
-					<h3>a platform for stories</h3>
-					<p>
-						Traditional content management systems are better at managment than content.
-					</p>
-				</div>
-			</section>
-			<section class="row1 col0" data-bg-img="/_img/nuclear-family.jpg" data-bgt-img="/_img/nuclear-family-desat.jpg" data-bg-color="#FFFFFF">
-				<div class="sixteen columns">
-					<h1 class="remove-bottom">reach for the stars</h1>
-					<h5>Version 1.2</h5>
-				</div>
-				<div class="one-third column">
-					<h3>About Skeleton?</h3>
-					<p>
-						Skeleton is a small collection of well-organized CSS files that can help you rapidly develop sites that look beautiful at any size, be it a 17" laptop screen or an iPhone. It's based on a responsive grid, but also provides very basic CSS for typography, buttons, forms and media queries. Go ahead, resize this super basic page to see the grid in action.
-					</p>
-				</div>
-				<div class="one-third column">
-					<h3>Three Core Principles</h3>
-					<p>
-						Skeleton is built on three core principles:
-					</p>
-					<ul class="square">
-						<li>
-							<strong>A Responsive Grid Down To Mobile</strong>: Elegant scaling from a browser to tablets to mobile.
-						</li>
-						<li>
-							<strong>Fast to Start</strong>: It's a tool for rapid development with best practices
-						</li>
-						<li>
-							<strong>Style Agnostic</strong>: It provides the most basic, beautiful styles, but is meant to be overwritten.
-						</li>
-					</ul>
-				</div>
-				<div class="one-third column">
-					<h3>Docs &amp; Support</h3>
-					<p>
-						The easiest way to really get started with Skeleton is to check out the full docs and info at <a href="http://www.getskeleton.com">www.getskeleton.com.</a>. Skeleton is also open-source and has a <a href="https://github.com/dhgamache/skeleton">project on git</a>, so check that out if you want to report bugs or create a pull request. If you have any questions, thoughts, concerns or feedback, please don't hesitate to email me at <a href="mailto:hi@getskeleton.com">hi@getskeleton.com</a>.
-					</p>
-				</div>
-			</section>
-			<section class="row2 col0" data-bg-img="/_img/burning_elf-bw.jpg" data-bgt-img="/_img/burning_elf.jpg" data-bg-color="#FFFFFF">
-				<div class="sixteen columns">
-					<h1 class="remove-bottom">nested tested</h1>
-					<h5>Version 1.2</h5>
-				</div>
-				<section class="x-scroll">
-					<div class="scroll">
-						<div class="sixteen columns left">
-							<h2 class="remove-bottom">nested section 1</h2>
-							<h5>Version 1.2</h5>
-						</div>
-						<div class="sixteen columns left">
-							<h2 class="remove-bottom">nested section 2</h2>
-							<h5>Version 1.2</h5>
-						</div>
-						<div class="sixteen columns left">
-							<h2 class="remove-bottom">nested section 3</h2>
-							<h5>Version 1.2</h5>
-						</div>
-					</div>
-				</section>
-			</section>
-			<section class="row2 col0" data-bg-img="/_img/burning_elf-bw.jpg" data-bgt-img="/_img/burning_elf.jpg" data-bg-color="#FFFFFF">
-				<div class="sixteen columns">
-					<h1 class="remove-bottom">nested tested 2</h1>
-					<h5>Version 1.2</h5>
-				</div>
-				<section class="x-scroll">
-					<div class="scroll">
-						<div class="sixteen columns left">
-							<h2 class="remove-bottom">nested section 1</h2>
-							<h5>Version 1.2</h5>
-						</div>
-						<div class="sixteen columns left">
-							<h2 class="remove-bottom">nested section 2</h2>
-							<h5>Version 1.2</h5>
-						</div>
-						<div class="sixteen columns left">
-							<h2 class="remove-bottom">nested section 3</h2>
-							<h5>Version 1.2</h5>
-						</div>
-						<div class="sixteen columns left">
-							<h2 class="remove-bottom">nested section 4</h2>
-							<h5>Version 1.2</h5>
-						</div>
-					</div>
-				</section>
-			</section>
-			<section class="row3 col0" data-bg-img="/_img/plastic-mountains-16_9-crop_fx.jpg" data-bgt-img="/_img/plastic-mountains-16_9-crop_blur.jpg" data-bg-color="#FFFFFF">
-				<div class="sixteen columns">
-					<h1 class="remove-bottom">it just keeps going</h1>
-					<h5>Version 1.2</h5>
+                </div>
+                <div class="two-thirds column">
+                    <h3>the nustori front end</h3>
+                    <p>
+                        Nustori is a set of HTML, CSS, and JavaScript files that provide a long form content experience. This site demonstrates a prerelease proof of concept version of Nustori. Consider this demo site a rough sketch. <a href="https://github.com/belling/nustori">Download from GitHub</a>.
+                    </p>
+                    <h3>v0.1 Release Notes</h3>
+                    <ol>
+                        <li>
+                            Only tested on Chrome and Firefox. Use at your own risk.
+                        </li>
+                    </ol>
+                    <h3>dependencies</h3>
+                    <p>
+                        This demo requires the following:
+                    </p>
+                    <ol>
+                        <li>
+                            <strong><a href="http://jquery.com/">jQuery</a>:</strong> Provides easy DOM manipulation and behavioral effects. Linked to in Google's repository.
+                        </li>
+                        <li>
+                            <strong><a href="http://www.getskeleton.com/">Skeleton</a>:</strong> Provides responsive layout grid. Included in _css directory.
+                        </li>
+                        <li>
+                            <strong><a href="">LESS</a>:</strong> Provides CSS preprocessing. Included in client side _js directory but should be moved to server side in future when Nustori.com is hosted on a platform that supports Node.js or similar.
+                        </li>
+                    </ol>
+                </div>
+                <div class="one-third column">
+                    <h3>the origin stori</h3>
+                    <p>
+                        Nustori was inspired by a desire to explore long form content presentation, coupled with my perception that small and non-profit media organzations could use a hand in engaging user experience design and web development. However the ultimate goal of the project is to produce a framework that may find uses in other visually-dynamic applications, including ecommerce,  narrative storytelling, blogging, and distance learning.
+                    </p>
+                </div>
+            </section>
+            <section data-bg-img="/_img/catan.jpg" data-bgt-img="/_img/catan-desat.jpg" data-bg-color="#FFFFFF">
+                <div class="sixteen columns">
+                    <h1 class="remove-bottom">the state of the stori</h1>
+                    <h5>what's in this release?</h5>
 
-				</div>
-			</section>
-			<section class="row4 col0" data-bg-img="/_img/plastic-mountains-16_9-crop_fx.jpg" data-bgt-img="/_img/plastic-mountains-16_9-crop_blur.jpg" data-bg-color="#FFFFFF">
-				<div class="sixteen columns">
-					<h1 class="remove-bottom">home at last</h1>
-					<h5>Version 1.2</h5>
-				</div>
-			</section>
-			<!-- container -->
-		</div>
-		<!-- End Document
-		================================================== -->
-	</body>
+                    <p>
+                        The current version is the result of an organic "designing with html" process, resulting in some pretty messy CSS and JavaScript. The code does not adhere to DRY (Don't Repeat Yourself) principles very well and is ripe for refactoring. But it does acheive some initial goals, as outlined below.
+                    </p>
+                </div>
+                <section class="x-scroll">
+                    <div class="scroll">
+                        <div class="sixteen columns left">
+                            <h2 class="remove-bottom">x and y axis navigation</h2>
+                            <h5>stories in multiple dimensions</h5>
+                            <p>
+                                Stories no longer have to follow a linear path. They can have branches and related information that augment the content. This Nustori release delivers primary content on the y-axis (vertical), with secondary content on the x-axis (horizontal). The section you are reading now demonstrates x-axis navigation.
+                            </p>
+
+                        </div>
+
+                        <div class="sixteen columns left">
+                            <h2 class="remove-bottom">coversheet image presentation</h2>
+                            <h5>static or with effects</h5>
+                            <p>
+                                Strong imagery draws the audience into a story, making them more likely to engage with long form content. This release features a flexible image effect in which each section features an image that covers the full window, then crossfades to a transition image as the page scrolls.
+                            </p>
+
+                        </div>
+                        <div class="sixteen columns left">
+                            <h2 class="remove-bottom">responsive design</h2>
+                            <h5>reliable display on whatever device the audience uses</h5>
+                            <p>
+                                Trying to guess the capabilities of the software or device a given audience member is using is a losing proposition. It's better for the site to adapt as best it can to diffent display environments. This release of Nustori was built using the <a href="http://www.getskeleton.com/">Skeleton responsive grid boilerplate</a> to provide responsive adaptability.
+                            </p>
+                        </div>
+                        <div class="sixteen columns left">
+                            <div class="two-thirds column left" style="margin-left: 0">
+                                <h2 class="remove-bottom">clean, semantic HTML5</h2>
+                                <h5>accessible, discoverable, maintainable, and current</h5>
+                                <p>
+                                    It's the first day of 2014 as I write this. HTML5 is still a candidate recommendation but much of it is decently supported in modern browsers and HTML 4 became a spec 16 years ago. It's time.
+                                </p>
+                            </div>
+                            <div class="one-third column right" style="margin-right: 0">
+                                <h3>the dom for data</h3>
+                                <p>
+                                    With semantic HTML we don't need a super complex data model, because the presentation defines its own schema-less structure that is easily parsed and understood.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="sixteen columns left">
+                            <div class="two-thirds column left" style="margin-left: 0">
+                                <h2 class="remove-bottom">multiple navigation options</h2>
+                                <h5>opportunity for all input methods</h5>
+                                <p>
+                                    People navigate in multiple ways. Sometimes they click a mouse, sometimes they turn a scrollwheel, sometimes they swipe their finger, sometimes they use their finger to tap. Nustori seeks to provide an obvious option that makes sense for whatever navigation input is being used.
+                                </p>
+                            </div>
+                            <div class="one-third column right" style="margin-right: 0">
+                                <h3>dynamic nav generation</h3>
+                                <p>
+                                    Because we are using the DOM for data definition, we can easily easily generate navigation elements on the fly with JavaScript.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <section data-bg-img="/_img/courthouse_sepia.jpg" data-bgt-img="/_img/courthouse.jpg" data-bg-color="#FFFFFF">
+                <div class="sixteen columns">
+                    <h1 class="remove-bottom">the next chapters</h1>
+                    <h5>what to work on next?</h5>
+                </div>
+                <section class="x-scroll">
+                    <div class="scroll">
+                        <div class="sixteen columns left">
+                            <h2 class="remove-bottom">asynchronous asset loading</h2>
+                            <h5>ajax is the foaming scrubber</h5>
+                            <p>
+                                This release of Nustori fetches every asset it needs on page load. Some of those assets are awfully big images that you aren't even going to see until you scroll a bit. They slow down the page load unnecessarily. The bigger and more complex the page gets, the worse this will be. The basic HTML structure is in place to load assets that are not being used at the moment asynchronously, via AJAX calls. Now it's just a matter of writing the JavaScript to do it.
+                            </p>
+                        </div>
+                        <div class="sixteen columns left">
+                            <h2 class="remove-bottom">html5 media support</h2>
+                            <h5>video and audio to make the stori pop</h5>
+                            <p>
+                                We are at a turning point in the use of online multimedia. Video and audio online has typically been "boxed in" with embedded players, effectively giving us webpages with little TVs and CD players in them. With native HTML5 media elements, video and audio has become just another part of the page alongside text and graphics. Future releases of Nustori will address ways of presenting media content, both as background design and as central content. An intriguing path would be to flip common presentations entirely on their heads and create a video-first long form presentation in which the timing of the video provides core navigation through text and other ancillary material.
+                            </p>
+                        </div>
+                        <div class="sixteen columns left">
+                            <h2 class="remove-bottom">css filter effects</h2>
+                            <h5>somewhere there's a place for us</h5>
+                            <p>
+This demo site acheives photographic effects by loading two versions of each giant picture and then crossfading between them. That's dumb. Unfortunately CSS filter effects support in browsers hasn't progressed to the point where I can use them and only upload one giant picture instead of two. The day I can use them safely is not yet in site. 
+                            </p>
+                        </div>
+                        <div class="sixteen columns left">
+                            <h2 class="remove-bottom">a server-side javascript application</h2>
+                            <h5>I've seen the future, and it isn't LAMP</h5>
+                            <p>
+                                For more than a decade, lightweight, open-source backend web development has relied on combinations of Apache Web Server and PHP/Perl/Python/Etc. Meanwhile, enterprise backend web development has tended towards application development in Java/ASP.NET/Etc. With the emergence of Node.js, a remarkable thing is happening: JavaScript, the language of front end scripting, has also become a viable option for back end application development. This changes everything, and well it should. With projects like <a href="https://ghost.org/">Ghost</a> being built with server-side JS, it's clear that this is where the serious work is headed.
+                            </p>
+                        </div>
+                        <div class="sixteen columns left">
+                            <h2 class="remove-bottom">reduce reliance on jQuery</h2>
+                            <h5>it's a fine line between helper and crutch</h5>
+                            <p>
+                                Don't get me wrong -- I <em>like</em> using jQuery. Writing <code>$('#thing')</code> is ever so much more enjoyable than writing <code>document.getElementById('thing')</code>. But native JavaScript is faster and using it to write core Nustori functions would help speed things up. 
+                            </p>
+                        </div>
+                        <div class="sixteen columns left">
+                            <h2 class="remove-bottom">swappable themes and effects</h2>
+                            <h5>some sort of plugin architecture is in order</h5>
+                            <p>
+                                I have no illusions about my coding skills. I'm competent, but I'm a liberal arts and communications guy, not a CS guy. Figuring out the best way to write plugins and themes in a web application is a little daunting to me, but I'm willing to give it a go. Or perhaps you want to help out? If so, get in touch through the <a href="https://github.com/belling/nustori">Nustori GitHub project</a>.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <section data-bg-img="/_img/painted_hills_blur.jpg" data-bgt-img="/_img/painted_hills.jpg" data-bg-color="#FFFFFF">
+                <div class="sixteen columns">
+                    <h1 class="remove-bottom">a(n eventual) rich publishing system</h1>
+                    <h5>Future version</h5>
+                </div>
+                <div class="sixteen columns">
+                    <p>
+                        Traditional Content Management Systems are better at "management" than "content." The ultimate expression of Nustori's goals would be a jointly distributed back end web application and front end presentation. The back end architecture would stress loose coupling between the data layers and the presentation layer, avoiding the mixing of logic and formatting that is endemic to many projects for popular CMSes such as Drupal and WordPress.
+                    </p>
+                    <p>
+                        Additionally, in the real world, many websites aren't simple and self-contained like this demo site. They are interconnected with external data sources, which feed them content in a mishmash of formats, ranging from XML to JSON to preformatted HTML widgets that come with their own styling and look like parasitic growths on the site. An envisioned Nustori publishing system would collect and normalize these data sources into a serialized document to be intelligently transformed and formatted for use on the site.
+                    </p>
+                    <p>
+                        Often, these disparate data sources aren't even external, but are internal to the publisher's own systems. A main website built with Drupal may coexist with a blog built using WordPress, for example. As envisioned, a full Nustori publishing system would be extended by modules and plugins built to provided serialized document output from these legacy CMSes. An envisioned architecture for Nustori publishing is heavily inspired by the publishing archicture I helped design and implement for <a href="http://REI.com">REI.com</a>, building on ideas proven out on a large ecommerce site with multiple use cases and heavy usage.
+                    </p>
+                </div>
+            </section>
+            <section data-bg-img="/_img/harstine.jpg" data-bgt-img="/_img/harstine.jpg" data-bg-color="#FFFFFF">
+                <div class="sixteen columns">
+                    <h1 class="remove-bottom">credits and license</h1>
+                    <h5>the fine print</h5>
+                </div>
+                <div class="sixteen columns">
+                    <p>
+                        Nustori software, design, and content is copyright &copy; 2013 - 2014 by Brook Ellingwood. Me: <a href="http://brookellingwood.com">My website</a> | <a href="http://linkedin.com/in/brookellingwood/">My LinkedIn Profile</a>
+                    </p>
+                    <p>
+                        The Nustori software and design, not including photographic elements, is released under a non-restrictive open-source license that I haven't yet picked. All third party software included in the Nustori distribution retains the original licenses under which it was originally distributed.
+                    </p>
+                    <p>
+                        Photographs and derivative images &copy; 2013 - 2014 by Brook Ellingwood. All rights reserved.
+                    </p>
+                </div>
+            </section>
+            <!-- container -->
+        </div>
+        <!-- End Document
+        ================================================== -->
+    </body>
 </html>

@@ -17,7 +17,8 @@ var cw;
 var sc;
 // window scrollTop
 var p;
-
+// pageHeader height
+var hh;
 // global DOM objects available onload - long names for clarity in targeting
 var container;
 var majorSections;
@@ -33,8 +34,8 @@ var majorSectionsNotLastHeaders;
 var majorSectionsTitles;
 var majorSectionsBackgrounds;
 var horizScrollSections;
-var topNav;
-
+var pageHeader;
+var topFixedNav;
 // load
 $(function() {
 	// hide the content during load to avoid flash frames
@@ -50,18 +51,18 @@ $(function() {
 	$(window).scroll(function() {
 		windowScrollFunctions()
 	});
+	$(window).mousemove(function(e) {
+		mouseMoveFunctions(e)
+	});
 	$(window).resize(function() {
 		resizeFunctions()
 	});
-
 	$('.container').animate({
 		opacity : 1
-	}, 250, function() {
+	}, 1000, function() {
 		$('body').css('background', '#FFFFFF');
 	});
-
 });
-
 function defineFixedGlobals() {
 	// starting values for global variables
 	ww = $(window).width();
@@ -88,32 +89,34 @@ function defineFixedGlobals() {
 	horizScrollSections = $('> section.x-scroll', majorSections);
 	horizScrollSectionsContent = $('> div.scroll > div', horizScrollSections);
 	horizScrollSectionsContentNotLast = horizScrollSectionsContent.not(':last');
+	pageHeader = $('body > header');
+	// this one is out of order so it will work
+	hh = pageHeader.height();
 };
-
 function prepDom(argument) {
 	// let's mark the last section for easier looping
 	majorSectionsLast.addClass('last');
 	// top fixed nav
-	// make the nav and child elements
-	container.append('<nav><ul></ul><span class="nav-label"></span></nav>');
 	// store the nav in an object
-	topFixedNav = ('> nav', container);
+	topFixedNav = ('> nav', pageHeader);
 	// major section h1s
 	majorSectionsTitles = $('> h1', majorSectionsHeaders);
 	// major sections and backgrounds
 	majorSections.each(function(i) {
 		$(this).attr('data-index', i).attr('id', 'sec' + i);
-		bi = 'url(' + $(this).attr('data-bg-img') + ')';
-		bt = 'url(' + $(this).attr('data-bgt-img') + ')';
-		bc = $(this).attr('data-bg-color');
-		$('.container').append('<div class="background not-set" id="bg' + i + '" data-index="' + i + '"><div class="transition"></div></div>');
+		var bi = 'url(' + $(this).attr('data-bg-img') + ')';
+		var bt = 'url(' + $(this).attr('data-bgt-img') + ')';
+		var bc = $(this).attr('data-bg-color');
+		var bh;
+		//= '<h1>' + majorSectionsTitles.eq(i).text() + '</h1>';
+		$('.container').append('<div class="background not-set" id="bg' + i + '" data-index="' + i + '"><div class="transition"></div>' + bh + '</div>');
 		$('.container > .background#bg' + i).css('background-image', bi).css('z-index', -(i + 1)).css('opacity', 0);
 		$('.container > .background#bg' + i + ' > .transition').css('background-image', bt).css('opacity', 0);
 	});
 	majorSectionsBackgrounds = $('> .background', container);
 	// major section internal nav
-	majorSectionsHeaders.after('<span class="nav-curr">more</span>');
-	majorSectionsNotFirstHeaders.before('<span class="nav-prev"></span>');
+	majorSectionsHeaders.after('<div class="nav-curr">more</div>');
+	majorSectionsNotFirstHeaders.before('<div class="nav-prev"></div>');
 	majorSectionsNotLast.append('<div class="nav-next"></div>');
 	$('.nav-prev', majorSections).each(function(i) {
 		$(this).html('prev: <strong>' + majorSectionsTitles.eq(i).text() + '</strong>');
@@ -126,81 +129,37 @@ function prepDom(argument) {
 	horizScrollSections.each(function(i) {
 		$('div.horiz-nav', this).not(':first').append('<span class="nav-left">prev</span>');
 		$('div.horiz-nav', this).not(':last').append('<span class="nav-right">next</span>');
-		$('div.horiz-nav', this).append('<div><span class="nav-label"></span><ul></ul><div>');
+		$('div.horiz-nav', this).append('<div><ul></ul><br /><span class="nav-label"></span><div>');
 	});
-	horizScrollSectionsContent.each(function() {
-		var ts = $(this);
-		var pu = $(this).parents('.x-scroll');
-		var pc = $(this).prevAll().length;
-		var nc = $(this).nextAll().length;
-		for (var i = 0; i < pc; i++) {
-			$('.horiz-nav > div > ul', this).append('<li><a>p</a></li>');
-		};
-		$('.horiz-nav > div > ul', this).append('<li class="active"><a>t</a></li>');
-		for (var i = 0; i < nc; i++) {
-			$('.horiz-nav > div > ul', this).append('<li><a>n</a></li>');
-		};
-		$('.horiz-nav > div > ul > li > a', this).each(function(i) {
-			$(this).text((i + 1));
-			var txt = $('h1,h2,h3,h4,h5', ts).first().text();
-			$('.nav-label', ts).text(txt);
-			$(this).click(function() {
-				pu.animate({
-					scrollLeft : cw * i
-				}, 500);
-			});
-		});
-	});
-};
 
+};
 /*
  * layout 1: Put the sections where they need to be
  */
 function positionSections() {
 	// first, get the nested sections laid out so their parent elements have the right height
 	var nw;
-	// this will track the nav
-	horizScrollSections.scroll(function() {
-	});
+	// make the .x-scroll sections wide enough to hold their children
+
 	$('> div.scroll', horizScrollSections).each(function(index) {
 		nw = cw * $('> div', this).length;
 		$(this).css('position', 'relative').width(nw);
 	});
-	// make the .x-scroll sections wide enough to hold their children
-	// add left/right nav to the nested .x-scroll sections
-	horizScrollSections.each(function() {
-		var pu = $(this);
-		$('.nav-right', this).each(function(i) {
-			var nt = $('> div > div', pu).eq(i + 1).children('h1,h2,h3,h4,h5').first().text();
-			$(this).click(function() {
-				pu.animate({
-					scrollLeft : cw * (i + 1)
-				}, 500);
-			}).html('next: <strong>' + nt + '</strong>');
-		});
-		$('.nav-left', this).each(function(i) {
-			var pt = $('> div > div', pu).eq(i).children('h1,h2,h3,h4,h5').first().text();
-			$(this).click(function() {
-				pu.animate({
-					scrollLeft : cw * (i)
-				}, 500);
-			}).html('prev: <strong>' + pt + '</strong>');
-		});
-	});
+
 	// store the previous section bottom (if any) for offset calculation
 	var pb;
 	majorSections.each(function(i) {
-		var th = $(this).height();
+		var th = $(this).outerHeight();
 		var thh = majorSectionsHeaders.eq(i).outerHeight() + Number($('.nav-prev', this).outerHeight()) + Number($('.nav-curr', this).outerHeight());
 		switch(i) {
 			case 0:
-				pb = wh - thh;
+				pb = wh - thh - 6;
 				$(this).css('top', pb).attr('data-top', pb).attr('data-bottom', pb + th);
-				pb = pb + th + wh + 40;
+				pb = pb + th + wh;
 				break;
 			default:
 				$(this).css('top', pb).attr('data-top', pb).attr('data-bottom', pb + th);
-				pb = pb + th + wh + 40;
+				pb = pb + th + wh;
 				break;
 		};
 		var tar = majorSectionsHeaders.eq(i);
@@ -210,42 +169,34 @@ function positionSections() {
 		$(this).attr('data-anchor', tp);
 	});
 };
-
 /*
  * layout 2: build navigation elements
  * note that the changes to navigation display are in the trackNav() function, which responds to window postion().top
  */
-function makeNav() {
-	// hmm. for some reason this doesn't work when I reference the global topFixedNav object, so I find it again and again and again...
-	var topNav = $('nav', container);
+function makeNav() {;
+	// hmm. for some reason this doesn't work (in Chrome) when I reference the global topFixedNav object, so I have to find it again...
+	//	var topNav = $('header > nav');
 	// position the nav in relation to the .container: its left is the .container's left
-	var nr = container.offset().left;
-	topNav.css('right', nr);
+	//	var nr = container.offset().left;
+	//	topNav.css('right', nr);
 	// now we're going to make the li and a elements
 	majorSectionsTitles.each(function(i) {
 		var curr = $(this).text();
 		var sec = '#sec' + i;
 		var nav = '#nav' + i;
-		$('ul', topNav).append('<li><a href="' + sec + '" title="' + curr + '">' + (i + 1) + '</a></li>');
+		$('ul', topFixedNav).append('<li><a href="' + sec + '" title="' + curr + '">' + (i + 1) + '</a></li>');
 	});
 	// on mouseover swap out the active nav label to what you'll get if you click
-
-	$('a', topNav).hover(function() {
-		var pre;
-		if ($(this).parent().hasClass('active')) {
-			pre = 'reset : '
-		} else {
-			pre = 'go to : '
-		};
-		$('span.nav-label', topNav).text(pre + $(this).attr('title')).addClass('hov-nav-label');
+	$('a', topFixedNav).hover(function() {
+		$('span.nav-label', topFixedNav).text($(this).attr('title')).addClass('hov-nav-label');
 	}, function() {
-		$('span.nav-label', topNav).text($('li.active > a', topNav).attr('title')).removeClass('hov-nav-label');
+		$('span.nav-label', topFixedNav).text($('li.active > a', topFixedNav).attr('title')).removeClass('hov-nav-label');
 	});
 	// make the nav scroll to the right section when it's clicked
-	// calling these the long way because for some reason the index count get wacked when I find within topNav...
-	$('body > .container > nav > ul > li').each(function(i) {
+	// calling these the long way because for some reason the index count get wacked when I find within topFixedNav...
+	$('body > header > nav > ul > li').each(function(i) {
 		$('> a', this).click(function() {
-			var lin = $('nav > ul > li.active').index();
+			var lin = $('header > nav > ul > li.active').index();
 			var dif = Math.abs(i - lin);
 			var tar = majorSectionsHeaders.eq(i);
 			var tp = majorSections.eq(i).attr('data-anchor');
@@ -257,12 +208,11 @@ function makeNav() {
 		});
 	});
 	// first, the major sections get linked to open the section when only the title header is visible, like on default load
-
 	majorSections.each(function(i) {
 		var tp = $(this).attr('data-top');
 		$('.nav-curr', this).click(function() {
 			$('html, body').animate({
-				scrollTop : tp
+				scrollTop : tp - hh - 8
 			}, 1000);
 		});
 	});
@@ -280,34 +230,138 @@ function makeNav() {
 		var pa = Number(po.attr('data-top'));
 		$('.nav-prev', this).click(function() {
 			$('html, body').animate({
-				scrollTop : pa
+				scrollTop : pa - hh - 8
 			}, 2000);
 		});
 	});
-};
+	// add left/right nav to the nested .x-scroll sections
+	// currently displayed section
+	var cds = 0;
+	// last scroll position
+	var lsp = 0;
+	// reset on stop
+	var ros = 0;
+	horizScrollSections.each(function() {
+		var pu = $(this);
+		pu.scroll(function() {
+			pu.removeClass('stopped');
+			var sl = pu.scrollLeft();
+			if (sl > (lsp + 15)) {
+				ros = 1;
+			} else if (sl < (lsp - 15)) {
+				ros = -1;
+			} else {
+				ros = 0;
+			}
+			;
+			function scrollStop() {
+				if (pu.hasClass('clicked')) {
+					pu.removeClass('clicked');
+					cds = lsp / cw;
+					return;
+				};
+				pu.addClass('stopped');
+				if (sl * (cds + ros) !== lsp) {
+					pu.animate({
+						scrollLeft : cw * (cds + ros)
+					}, 500, function() {
+						lsp = pu.scrollLeft();
+						cds = lsp / cw;
+						ros = 0;
+					});
+				};
+			};
+			var self = this, $this = $(self);
+			if ($this.data('scrollTimeout')) {
+				clearTimeout($this.data('scrollTimeout'));
+			}
+			$this.data('scrollTimeout', setTimeout(scrollStop, 100, self));
 
+		});
+		$('.nav-right', this).each(function(i) {
+			var nt = $('> div > div', pu).eq(i + 1).find('h1,h2,h3,h4,h5').first().text();
+			$(this).click(function() {
+				pu.animate({
+					scrollLeft : cw * (i + 1)
+				}, 500, function() {
+					lsp = pu.scrollLeft();
+					pu.addClass('clicked');
+				});
+			}).html('next: <strong>' + nt + '</strong>');
+		});
+		$('.nav-left', this).each(function(i) {
+			var pt = $('> div > div', pu).eq(i).find('h1,h2,h3,h4,h5').first().text();
+			$(this).click(function() {
+				pu.animate({
+					scrollLeft : cw * i
+				}, 500, function() {
+					lsp = pu.scrollLeft();
+					pu.addClass('clicked');
+				});
+			}).html('prev: <strong>' + pt + '</strong>');
+		});
+
+	});
+	horizScrollSectionsContent.each(function() {
+		var ts = $(this);
+		var pu = $(this).parents('.x-scroll');
+		var pc = $(this).prevAll().length;
+		var nc = $(this).nextAll().length;
+		for (var i = 0; i < pc; i++) {
+			$('.horiz-nav > div > ul', this).append('<li><a>p</a></li>');
+		};
+		$('.horiz-nav > div > ul', this).append('<li class="active"><a>t</a></li>');
+		for (var i = 0; i < nc; i++) {
+			$('.horiz-nav > div > ul', this).append('<li><a>n</a></li>');
+		};
+		$('.horiz-nav > div > ul > li > a', this).each(function(i) {
+			$(this).text((i + 1));
+			// var txt = $('h1,h2,h3,h4,h5', ts).first().text();
+			var ct = horizScrollSectionsContent.eq(i);
+			var txt = $('h1,h2,h3,h4,h5', ct).first().text();
+			var ltxt = $('h1,h2,h3,h4,h5', ts).first().text();
+			$(this).attr('title', txt);
+			$('.nav-label', ts).text(ltxt);
+			$(this).hover(function() {
+				$('.nav-label', ts).text($(this).attr('title')).addClass('hov-nav-label');
+			}, function() {
+				$('.nav-label', ts).text(ltxt).removeClass('hov-nav-label');
+			});
+			$(this).click(function() {
+				pu.animate({
+					scrollLeft : cw * i
+				}, 500, function() {
+					lsp = pu.scrollLeft();
+					pu.addClass('clicked');
+				});
+
+			});
+		});
+	});
+};
 /*
  * behavior: let's make the nav react to window .position().top
  */
 function trackNav(i) {
 	// remove the active class from whatever had it and put in on the one passed to the function
-	$('body > .container > nav > ul li.active').removeClass('active');
-	$('body > .container > nav > ul li').eq(i).addClass('active');
+	$('body > header > nav > ul li.active').removeClass('active');
+	$('body > header > nav > ul li').eq(i).addClass('active');
 	// retrieve the title attribute from the nav button and put it into the nav label
-	var nt = $('body > .container > nav > ul li a').eq(i).attr('title');
-	$('body > .container > nav > span.nav-label').text(nt);
+	var nt = $('body > header > nav > ul li a').eq(i).attr('title');
+	$('body > header > span.nav-label').text(nt);
 	// that's it!
 };
-
 /*
  * behavior: things to do when the window scrolls
  */
 function windowScrollFunctions() {
+	$('body').removeClass('stopped');
 	// how's that scrolling going?
 	p = $(document).scrollTop();
 	viewportFunctions();
 	// gather the sections and backgrounds we're working with
 	var inv = $('.inview');
+	var invind = majorSections.index(inv);
 	var ninv = inv.next();
 	var pinv = inv.prev();
 	var invt = Number(inv.attr('data-top'));
@@ -316,9 +370,11 @@ function windowScrollFunctions() {
 	var bginvt = $('.transition', bginv);
 	var nbginv = bginv.next('.background');
 	var pbginv = bginv.prevAll('.background');
-
+	var bginvh1 = $('.bg-inview > h1');
 	var ito = (1 + ((p - invt) / wh) / .25).toFixed(2);
-	var io = (2 - ito).toFixed(2);
+	// var io = (2 - ito).toFixed(2);
+	var io = -(1 + ((p - invb) / wh) / .25);
+	console.log(-(1 + ((p - invb) / wh) / .25));
 	var np = -(p - invb);
 	var no = (1 + ((p - invb) / wh) / .25).toFixed(2);
 	if (ito > 1) {
@@ -340,30 +396,45 @@ function windowScrollFunctions() {
 	}
 	;
 	bginvt.css('opacity', ito);
+	bginvh1.css('opacity', 1 - (ito * 2))//.css('color','red');
 	bginv.css('top', 0).css('opacity', io);
 	var np = -(p - invb);
-	var no = (1 + ((p - invb) / wh) / .25).toFixed(2);
+	var no = Number((1 + ((p - invb) / wh) / .25).toFixed(2)) + .25;
 	nbginv.css('top', np).css('opacity', no).addClass('class name');
 	pbginv.css('opacity', 0);
 	var nc = $('.inview');
 	var nca = Number(nc.attr('data-anchor'));
 	var nnc = $('.nav-curr', nc);
-	if (nca + 20 > p) {
-		nnc.animate({
-			opacity : 1
-		}, 25, function() {
-			nnc.css('cursor', 'pointer');
-		})
+	var invat = -(p - Number(inv.attr('data-top')));
+	if (invat <= hh) {
+		pageHeader.slideUp();
 	};
-	if (nca + 20 < p) {
-		nnc.animate({
-			opacity : 0
-		}, 25, function() {
-			nnc.css('cursor', 'auto');
-		})
+	// scroll stop
+	function scrollStop() {
+		$('body').addClass('stopped');
+		if (invat <= hh) {
+			pageHeader.slideUp();
+		} else if (invind < 1 && p > 20) {
+			pageHeader.slideUp();
+		} else {
+			pageHeader.slideDown();
+		}
+		;
+		if (nca + 20 > p) {
+			nnc.css('visibility', 'visible').css('cursor', 'pointer');
+		};
+		if (nca + 40 < p) {
+			nnc.css('visibility', 'hidden').css('cursor', 'auto');
+		};
 	};
-};
 
+	var self = this, $this = $(self);
+	if ($this.data('scrollTimeout')) {
+		clearTimeout($this.data('scrollTimeout'));
+	}
+	$this.data('scrollTimeout', setTimeout(scrollStop, 250, self));
+
+};
 /*
  * behaviors 2: what's in the viewport and what's out of it
  */
@@ -380,29 +451,28 @@ function viewportFunctions() {
 		// give the background a special class
 		sb.addClass('bg-inview');
 		// how far down the page is the top?
-		var tp = s.position();
-		var tt = tp.top;
+		var tt = s.position().top;
 		// how tall is it?
-		var th = s.height();
+		var th = s.outerHeight();
 		// where's the bottom? (hey, wait a minute! can't I just get all this from the data- attribute instead of figuring it out again?)
 		var tb = tt + th;
 		// this is simpler, yes, but it doesn't work, alas (is it because it's static offset, not dynamic position?)
 		// var tb = $(this).attr('data-pos-key');
-
 		// okay, if the window scroll is less than the top of the section and the top of the section is less than the window scroll plus window height, it's .inview
 		// or if the dynamic bottom we just found is less than the window scroll plus the window height and the dynamic bottom is greater than the window scroll
 		// either one. whatever works for you. it's all good.
-		if ((p <= tt && tt <= (p + wh)) || (tb <= p + wh && tb >= p)) {
-			$('.inview').addClass('outview').removeClass('inview');
+		if (tt < (p + wh) && tb > p) {
+			s.addClass('outview').removeClass('inview');
 			majorSectionsBackgrounds.eq(i).addClass('bg-inview');
 			s.addClass('inview').removeClass('outview');
-			trackNav(i);
+			setTimeout(function() {
+				trackNav(i);
+			}, 500);
 		} else {
 			s.addClass('outview').removeClass('inview');
 			majorSectionsBackgrounds.eq(i).removeClass('bg-inview');
 		}
 		;
-
 		// the section .background element images and color are retrieved from data- attributes
 		// (the images are all being loaded at page load, but i'd like to make that async as they are needed)
 		// (now, the bg color can never be seen because it fades with image, however if image load is deferred it will be seen on nav clicks)
@@ -412,7 +482,12 @@ function viewportFunctions() {
 		sb.removeClass('not-set').css('background-image', bi).css('background-color', bc).css('opacity', 0).css('z-index', '-' + i).children('.transition').css('background-image', bt).css('postion', 'fixed').css('top', p + wh);
 	});
 };
-
+// when the mouse is moved, check where it is ana do things
+function mouseMoveFunctions(e) {
+	if (e.pageY - p < hh && $('body').hasClass('stopped')) {
+		pageHeader.slideDown();
+	};
+};
 // when the window is resized, get the background height and reposition all the sections, yo
 function resizeFunctions() {
 	// reset values for dimensional globals
