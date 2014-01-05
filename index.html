@@ -6,6 +6,10 @@
 <html lang="en">
     <!--<![endif]-->
     <head>
+        <!--[if IE]>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Raleway:500,700' rel='stylesheet' type='text/css'>
+        <![endif]-->
 
         <!-- Basic Page Needs
         ================================================== -->
@@ -20,9 +24,13 @@
 
         <!-- CSS
         ================================================== -->
-
-        <link href='//fonts.googleapis.com/css?family=Open+Sanst:400|Raleway:500,700' rel='stylesheet' type='text/css'>
-
+        <!--[if !IE]> -->
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:400|Raleway:500,700' rel='stylesheet' type='text/css'>
+        <!-- <![endif]-->
+        
+        
+        
+        
         <link rel="stylesheet" href="/_css/skeleton/base.css" />
         <link rel="stylesheet" href="/_css/skeleton/skeleton.css" />
         <link rel="stylesheet" href="/_css/skeleton/layout.css" />
@@ -58,10 +66,10 @@
 
         <!-- Favicons
         ================================================== -->
-        <link rel="shortcut icon" href="/_img/favicon.ico">
-        <link rel="apple-touch-icon" href="/_img/apple-touch-icon.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/_img/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/_img/apple-touch-icon-114x114.png">
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
 
     </head>
     <body>
@@ -77,14 +85,14 @@
             </nav><span class="nav-label"></span>
         </header>
         <div class="container">
-            <section  data-bg-img="/_img/wood.jpg" data-bgt-img="/_img/wood-strokes.jpg" data-bg-color="#FFFFFF">
+            <section  data-bg-img="wood.jpg" data-bgt-img="wood-strokes.jpg" data-bg-color="#FFFFFF">
                 <header>
                     <h1>Nustori</h1>
                     <p>
                         we have a new language. let's use it to tell a new story.
                     </p>
                     <p>
-                        version 0.1 | proof of concept release
+                        version 0.1.01 | proof of concept release
                     </p>
                 </header>
                 <div class="sixteen columns">
@@ -97,10 +105,25 @@
                     <p>
                         Nustori is a set of HTML, CSS, and JavaScript files that provide a long form content experience. This site demonstrates a prerelease proof of concept version of Nustori. Consider this demo site a rough sketch. <a href="https://github.com/belling/nustori">Download from GitHub</a>.
                     </p>
-                    <h3>v0.1 Release Notes</h3>
+                    <p>
+                        Unlike the pattern of long form experiences being popularized by <em>The New York Times</em>, <em>Medium</em>, <em>Verge</em>, and others, Nustori is looking to support traditionally visual storytelling forms, by augmenting them with text rather than the other way around.   
+                    </p>
+                    <h3>v0.1.01 Release Notes</h3>
                     <ol>
                         <li>
-                            Only tested on Chrome and Firefox. Use at your own risk.
+                            Tested on Chrome, Firefox, Internet Explorer 9, and Safari and Chrome for iOS
+                        </li>
+                        <li>
+                            Known display bugs at iPhone resolutions to be addressed in later versions
+                        </li>
+                        <li>
+                            Added local font-faces, but not including in distro due to licensing concerns
+                        </li>
+                        <li>
+                            Added multiple image sizes to reduce image load and memory usage on smaller displays
+                        </li>
+                        <li>
+                            Tweaked CSS to account for inconsistent IE behaviors
                         </li>
                     </ol>
                     <h3>dependencies</h3>
@@ -126,7 +149,7 @@
                     </p>
                 </div>
             </section>
-            <section data-bg-img="/_img/catan.jpg" data-bgt-img="/_img/catan-desat.jpg" data-bg-color="#FFFFFF">
+            <section data-bg-img="catan.jpg" data-bgt-img="catan-desat.jpg" data-bg-color="#FFFFFF">
                 <div class="sixteen columns">
                     <h1 class="remove-bottom">the state of the stori</h1>
                     <h5>what's in this release?</h5>
@@ -194,7 +217,7 @@
                     </div>
                 </section>
             </section>
-            <section data-bg-img="/_img/courthouse_sepia.jpg" data-bgt-img="/_img/courthouse.jpg" data-bg-color="#FFFFFF">
+            <section data-bg-img="courthouse_sepia.jpg" data-bgt-img="courthouse.jpg" data-bg-color="#FFFFFF">
                 <div class="sixteen columns">
                     <h1 class="remove-bottom">the next chapters</h1>
                     <h5>what to work on next?</h5>
@@ -219,7 +242,7 @@
                             <h2 class="remove-bottom">css filter effects</h2>
                             <h5>somewhere there's a place for us</h5>
                             <p>
-This demo site acheives photographic effects by loading two versions of each giant picture and then crossfading between them. That's dumb. Unfortunately CSS filter effects support in browsers hasn't progressed to the point where I can use them and only upload one giant picture instead of two. The day I can use them safely is not yet in site. 
+                                This demo site acheives photographic effects by loading two versions of each giant picture and then crossfading between them. That's dumb. Unfortunately CSS filter effects support in browsers hasn't progressed to the point where I can use them and only upload one giant picture instead of two. The day I can use them safely is not yet in site.
                             </p>
                         </div>
                         <div class="sixteen columns left">
@@ -233,7 +256,15 @@ This demo site acheives photographic effects by loading two versions of each gia
                             <h2 class="remove-bottom">reduce reliance on jQuery</h2>
                             <h5>it's a fine line between helper and crutch</h5>
                             <p>
-                                Don't get me wrong -- I <em>like</em> using jQuery. Writing <code>$('#thing')</code> is ever so much more enjoyable than writing <code>document.getElementById('thing')</code>. But native JavaScript is faster and using it to write core Nustori functions would help speed things up. 
+                                Don't get me wrong -- I <em>like</em> using jQuery. Writing
+                                <code>
+                                    $('#thing')
+                                </code>
+                                is ever so much more enjoyable than writing
+                                <code>
+                                    document.getElementById('thing')
+                                </code>
+                                . But native JavaScript is faster and using it to write core Nustori functions would help speed things up.
                             </p>
                         </div>
                         <div class="sixteen columns left">
@@ -246,7 +277,7 @@ This demo site acheives photographic effects by loading two versions of each gia
                     </div>
                 </section>
             </section>
-            <section data-bg-img="/_img/painted_hills_blur.jpg" data-bgt-img="/_img/painted_hills.jpg" data-bg-color="#FFFFFF">
+            <section data-bg-img="painted_hills_blur.jpg" data-bgt-img="painted_hills.jpg" data-bg-color="#FFFFFF">
                 <div class="sixteen columns">
                     <h1 class="remove-bottom">a(n eventual) rich publishing system</h1>
                     <h5>Future version</h5>
@@ -263,7 +294,7 @@ This demo site acheives photographic effects by loading two versions of each gia
                     </p>
                 </div>
             </section>
-            <section data-bg-img="/_img/harstine.jpg" data-bgt-img="/_img/harstine.jpg" data-bg-color="#FFFFFF">
+            <section data-bg-img="harstine.jpg" data-bgt-img="harstine.jpg" data-bg-color="#FFFFFF">
                 <div class="sixteen columns">
                     <h1 class="remove-bottom">credits and license</h1>
                     <h5>the fine print</h5>

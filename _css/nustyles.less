@@ -1,10 +1,46 @@
 @main-font: 'Open Sans', Arial, sans-serif;
 @head-font: 'Josefin Sans', Futura, verdana, sans-serif;
 @dumb-ie-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000', GradientType=0 );
-a, a:visited {
+
+
+
+@font-dir: '/_css/fonts/';
+@font-face {
+	font-family: 'Open Sans';
+	src: url('@{font-dir}OpenSans-Regular-webfont.eot');
+	src: url('@{font-dir}OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('@{font-dir}OpenSans-Regular-webfont.woff') format('woff'), url('@{font-dir}OpenSans-Regular-webfont.ttf') format('truetype'), url('@{font-dir}OpenSans-Regular-webfont.svg#open_sansbold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('@{font-dir}OpenSans-Bold-webfont.eot');
+	src: url('@{font-dir}OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('@{font-dir}OpenSans-Bold-webfont.woff') format('woff'), url('@{font-dir}OpenSans-Bold-webfont.ttf') format('truetype'), url('@{font-dir}OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Raleway';
+	src: url('@{font-dir}raleway-Bold-webfont.eot');
+	src: url('@{font-dir}raleway-regular-webfont.eot?#iefix') format('embedded-opentype'), url('@{font-dir}raleway-regular-webfont.woff') format('woff'), url('@{font-dir}raleway-regular-webfont.ttf') format('truetype'), url('@{font-dir}raleway-regular-webfont.svg#open_sansbold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Raleway';
+	src: url('@{font-dir}raleway-bold-webfont.eot');
+	src: url('@{font-dir}raleway-bold-webfont.eot?#iefix') format('embedded-opentype'), url('@{font-dir}raleway-bold-webfont.woff') format('woff'), url('@{font-dir}raleway-bold-webfont.ttf') format('truetype'), url('@{font-dir}raleway-bold-webfont.svg#open_sansbold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+a , a:visited {
 	text-decoration: none;
-	color:#000EAF;
-	border-bottom:1px dotted #333333;
+	color: #000EAF;
+	border-bottom: 1px dotted #333333;
 }
 
 h1 , h2 , h3 , h4 , h5 {
@@ -127,7 +163,6 @@ body {
 				border: 5px solid rgba(000, 000, 000, .1);
 				border-radius: 8px;
 				h1 {
-					font-size: 94px;
 					text-align: center;
 					border-bottom: 5px solid rgba(000, 000, 000, .1);
 				}
@@ -196,9 +231,10 @@ body {
 			}
 
 			&.x-scroll {
+				overflow-y: hidden;
 				div.horiz-nav {
 					width: 100%;
-					overflow-x: scroll;
+					overflow-x: hidden;
 					overflow-y: hidden;
 					text-align: center;
 					margin: 0;
@@ -229,7 +265,7 @@ body {
 									text-align: center;
 									font-weight: bold;
 									cursor: pointer;
-									border:none;
+									border: none;
 									&:hover {
 										background: #DDDDDD;
 										border-radius: 4px;

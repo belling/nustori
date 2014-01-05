@@ -103,13 +103,22 @@ function prepDom(argument) {
 	majorSectionsTitles = $('> h1', majorSectionsHeaders);
 	// major sections and backgrounds
 	majorSections.each(function(i) {
+		// background image size directory chooser
+		var bgdir = '/_img/480/';
+		if (wh > 800) {
+			bgdir = 1080;
+		} else if (wh > '/_img/640/') {
+			bgdir = 720;
+		} else if (wh > 400) {
+			bgdir = '/_img/480/';
+		}
+		;
+
 		$(this).attr('data-index', i).attr('id', 'sec' + i);
-		var bi = 'url(' + $(this).attr('data-bg-img') + ')';
-		var bt = 'url(' + $(this).attr('data-bgt-img') + ')';
+		var bi = 'url(' + bgdir + $(this).attr('data-bg-img') + ')';
+		var bt = 'url(' + bgdir + $(this).attr('data-bgt-img') + ')';
 		var bc = $(this).attr('data-bg-color');
-		var bh;
-		//= '<h1>' + majorSectionsTitles.eq(i).text() + '</h1>';
-		$('.container').append('<div class="background not-set" id="bg' + i + '" data-index="' + i + '"><div class="transition"></div>' + bh + '</div>');
+		$('.container').append('<div class="background" id="bg' + i + '" data-index="' + i + '"><div class="transition"></div></div>');
 		$('.container > .background#bg' + i).css('background-image', bi).css('z-index', -(i + 1)).css('opacity', 0);
 		$('.container > .background#bg' + i + ' > .transition').css('background-image', bt).css('opacity', 0);
 	});
@@ -400,7 +409,7 @@ function windowScrollFunctions() {
 	bginv.css('top', 0).css('opacity', io);
 	var np = -(p - invb);
 	var no = Number((1 + ((p - invb) / wh) / .25).toFixed(2)) + .25;
-	nbginv.css('top', np).css('opacity', no).addClass('class name');
+	nbginv.css('top', np).css('opacity', no);
 	pbginv.css('opacity', 0);
 	var nc = $('.inview');
 	var nca = Number(nc.attr('data-anchor'));
@@ -473,13 +482,6 @@ function viewportFunctions() {
 			majorSectionsBackgrounds.eq(i).removeClass('bg-inview');
 		}
 		;
-		// the section .background element images and color are retrieved from data- attributes
-		// (the images are all being loaded at page load, but i'd like to make that async as they are needed)
-		// (now, the bg color can never be seen because it fades with image, however if image load is deferred it will be seen on nav clicks)
-		bi = 'url(' + s.attr('data-bg-img') + ')';
-		bt = 'url(' + s.attr('data-bgt-img') + ')';
-		bc = 'url(' + s.attr('data-bg-color') + ')';
-		sb.removeClass('not-set').css('background-image', bi).css('background-color', bc).css('opacity', 0).css('z-index', '-' + i).children('.transition').css('background-image', bt).css('postion', 'fixed').css('top', p + wh);
 	});
 };
 // when the mouse is moved, check where it is ana do things
